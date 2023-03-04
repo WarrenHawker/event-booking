@@ -1,8 +1,16 @@
+import Header from './components/header';
+import Event from './components/event';
+import { data, Data } from './data';
+
 function App() {
+  const eventsDisplay = data.map((item) => {
+    return <Event data={item} />;
+  });
   return (
-    <main>
-      <h1>hello world</h1>
-    </main>
+    <>
+      <Header />
+      <main>{eventsDisplay}</main>
+    </>
   );
 }
 

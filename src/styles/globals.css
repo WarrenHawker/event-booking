@@ -1,13 +1,25 @@
+@import url(./components/buttons.css);
+@import url(./abstracts/colors.css);
+@import url(./components/header.css);
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background-color: var(--color-primary-background);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 img {
   display: block;
   width: 100%;
+  margin: auto;
+}
+
+main {
+  max-width: 1500px;
   margin: auto;
 }
