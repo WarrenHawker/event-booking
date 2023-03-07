@@ -1,6 +1,7 @@
 @import url(./components/buttons.css);
 @import url(./abstracts/colors.css);
 @import url(./components/header.css);
+@import url(./components/eventsDisplay.css);
 
 
 *, *::before, *::after {

@@ -1,17 +1,29 @@
 import Header from './components/header';
-import Event from './components/event';
-import { data, Data } from './data';
+import EventsDisplay from './components/eventsDisplay';
+import { useState } from 'react';
+import BookingForm from './components/bookingForm';
 
-function App() {
-  const eventsDisplay = data.map((item) => {
-    return <Event data={item} />;
-  });
+const App = () => {
+  const [bookingFormEvent, setBookingFormEvent] = useState(0);
+
+  const showBookingForm = (id: number) => {
+    setBookingFormEvent(id);
+  };
+
+  const closeBookingForm = () => {
+    setBookingFormEvent(0);
+  };
   return (
     <>
       <Header />
-      <main>{eventsDisplay}</main>
+      <main>
+        <EventsDisplay showBookingForm={showBookingForm} />
+      </main>
+      {bookingFormEvent == 0 ? null : (
+        <BookingForm eventId={bookingFormEvent} />
+      )}
     </>
   );
-}
+};
 
 export default App;
