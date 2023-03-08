@@ -19,9 +19,19 @@ const App = () => {
       <main>
         <EventsDisplay showBookingForm={showBookingForm} />
       </main>
-      {bookingFormEvent == 0 ? null : (
-        <BookingForm eventId={bookingFormEvent} />
-      )}
+      <div
+        className={
+          bookingFormEvent == 0
+            ? 'booking-form-overlay'
+            : 'booking-form-overlay active'
+        }>
+        {bookingFormEvent == 0 ? null : (
+          <BookingForm
+            eventId={bookingFormEvent}
+            closeBookingForm={closeBookingForm}
+          />
+        )}
+      </div>
     </>
   );
 };

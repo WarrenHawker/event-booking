@@ -1,4 +1,4 @@
-import { useState, ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 import { useEvents } from '../context/eventsContext';
 import { Data } from '../data';
 import BookingPageOne from './bookingFormPages/bookingPageOne';
@@ -7,33 +7,34 @@ import BookingPageThree from './bookingFormPages/bookingPageThree';
 
 interface BookingFormProps {
   eventId: number;
+  closeBookingForm: () => void;
 }
 
-const BookingForm = ({ eventId }: BookingFormProps) => {
+const BookingForm = ({ eventId, closeBookingForm }: BookingFormProps) => {
   const [activePage, setActivePage] = useState(1);
   const eventsData = useEvents();
-  let event: Data[] = eventsData.filter((item: Data) => item.id == eventId);
+  const [event, setEvent] = useState<Data[] | undefined>();
 
-  if (!event) {
-    return null;
-  }
+  useEffect(() => {
+    setEvent(eventsData.filter((item: Data) => item.id == eventId));
+  }, [eventId]);
 
-  console.log(event);
   return (
-    <div className='booking-form-overlay'>
-      <div className='booking-form-container'>
-        <i className='fa fa-window-close' id='booking-form-close'></i>
-        <div className='event-info'></div>
-        <form id='booking-form'>
-          {activePage == 1 ? (
-            <BookingPageOne />
-          ) : activePage == 2 ? (
-            <BookingPageTwo />
-          ) : (
-            <BookingPageThree />
-          )}
-        </form>
-      </div>
+    <div className='booking-form-container'>
+      <i
+        className='fa fa-window-close'
+        id='booking-form-close'
+        onClick={closeBookingForm}></i>
+      {event ? <div className='event-info'>{event[0].title}</div> : null}
+      <form id='booking-form'>
+        {activePage == 1 ? (
+          <BookingPageOne />
+        ) : activePage == 2 ? (
+          <BookingPageTwo />
+        ) : (
+          <BookingPageThree />
+        )}
+      </form>
     </div>
   );
 };

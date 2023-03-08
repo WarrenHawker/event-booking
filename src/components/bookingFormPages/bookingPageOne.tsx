@@ -25,9 +25,7 @@ const BookingPageOne = () => {
         </a>
         <span> (opens in a new window)</span>
       </p>
-      <button className='btn btn-primary booking-form-button' data-next>
-        Next
-      </button>
+      <button className='btn btn-primary booking-form-button'>Next</button>
     </div>
   );
 };

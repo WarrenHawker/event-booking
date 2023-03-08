@@ -2,6 +2,7 @@
 @import url(./abstracts/colors.css);
 @import url(./components/header.css);
 @import url(./components/eventsDisplay.css);
+@import url(./components/bookingForm.css);
 
 
 *, *::before, *::after {
